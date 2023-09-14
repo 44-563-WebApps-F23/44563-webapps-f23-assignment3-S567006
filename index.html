@@ -60,7 +60,27 @@
                 </tr>
             </tr>
         </table>
-    <hr>
-
+        <hr>
+        <h1>Code Display</h1>
+        <blockquote>
+            <q>Prevent Image Hotlinking stackoverflow ?</q>
+            <a href="https://stackoverflow.com/questions/19656103/prevent-hotlinking-image-files">Display</a>
+        </blockquote>
+        <pre 
+        RewriteEngine On
+        RewriteCond %{HTTP_REFERER} !^http://(.+\.)?yourdomain\.com/ [NC]
+        RewriteCond %{HTTP_REFERER} !^$
+        RewriteRule .*\.(jpg|gif|bmp|png)$ /images/dontsteal.jpg [L]
+        Also allow search engines:
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?mydomain\.com/ [NC]
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?google\.(.+)/ [NC]
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?(.*\.)?google\.(.+)/ [NC]
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?bing\.(.+)/ [NC]
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?(.*\.)?bing\.(.+)/ [NC]
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?yahoo\.(.+)/ [NC]
+          RewriteCond %{HTTP_REFERER} !^http://(.+\.)?(.*\.)?yahoo\.(.+)/ [NC]
+          RewriteCond %{HTTP_REFERER} !^$
+          RewriteRule .*\.(jpe?g|gif|png)$ /transparent.gif [L]
+        </pre>
     </body>
 </html>
